@@ -62,7 +62,7 @@ func CrawlNews(w http.ResponseWriter, r *http.Request) {
 	theSun = filterNews(theSun)
 
 	premiumTimes := getNews("article .jeg_postblock_content", "h3 a", "h3 a", ".jeg_post_meta .jeg_meta_date a", "https://www.premiumtimesng.com/", collector)
-	//premiumTimes = filterNews(premiumTimes[1:])
+	premiumTimes = filterNews(premiumTimes)
 
 	aljazeera := getNews("article .gc__content", ".gc__header-wrap .gc__title a span", ".gc__header-wrap .gc__title a", ".gc__footer .gc__meta .gc__date .gc__date__date .date-simple", "https://www.aljazeera.com/where/nigeria/", collector)
 
@@ -70,7 +70,7 @@ func CrawlNews(w http.ResponseWriter, r *http.Request) {
 	saharaNews = filterNews(saharaNews)
 
 	dailyTrust := getNews(".list_body__19fyx", "a", "a", ".list_category__1sVu4 span.list_time__1UhFn", "https://dailytrust.com", collector) // prefix media link with https://www.dailytrust.com
-	dailyTrust = dailyTrust[9:]
+	//dailyTrust = dailyTrust[9:]
 
 	dailypost := getNews(".mvp-blog-story-wrap", "a .mvp-blog-story-in .mvp-blog-story-text h2", "a", "a .mvp-blog-story-in .mvp-blog-story-text .mvp-cat-date-wrap .mvp-cd-date", "https://dailypost.ng/headlines/", collector)
 
