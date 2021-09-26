@@ -18,7 +18,7 @@ type news struct {
 }
 
 type allnews struct {
-	PunchNews, GuardianNews, SunNews, PremiumTimesNews, AlJazeeraNews, SaharaNews, DailyPostNews, SkySportsNews, CompleteSportsNews1, CompleteSportsNews2 []news
+	PunchNews, GuardianNews, SunNews, PremiumTimesNews, AlJazeeraNews, SaharaNews, DailyTrustNews, DailyPostNews, SkySportsNews, CompleteSportsNews1, CompleteSportsNews2 []news
 }
 
 func init() {
@@ -70,6 +70,9 @@ func CrawlNews(w http.ResponseWriter, r *http.Request) {
 	saharaNews := getNews(".block-module-content", ".block-module-content-header span a", ".block-module-content-header span a", ".block-module-content-footer .block-module-content-footer-item-date", "https://www.saharareporters.com/", collector)
 	saharaNews = filterNews(saharaNews)
 
+	dailyTrust := getNews(".list_body__19fyx", "a", "a", ".list_category__1sVu4 span.list_time__1UhFn", "https://dailytrust.com", collector) // prefix media link with https://www.dailytrust.com
+	dailyTrust = dailyTrust[9:]
+
 	dailypost := getNews(".mvp-blog-story-wrap", "a .mvp-blog-story-in .mvp-blog-story-text h2", "a", "a .mvp-blog-story-in .mvp-blog-story-text .mvp-cat-date-wrap .mvp-cd-date", "https://dailypost.ng/headlines/", collector)
 
 	skysports := getNews(".sdc-site-tile__body-main", ".sdc-site-tile__headline a span", ".sdc-site-tile__headline a", ".sdc-site-tile__info .sdc-site-tile__tag a ", "https://www.skysports.com/", collector) //prefix link with https://www.skysports.com/
@@ -78,7 +81,7 @@ func CrawlNews(w http.ResponseWriter, r *http.Request) {
 	completesports2 := getNews(".item-sub", ".item-title a", ".item-title a", ".meta-items .meta-item-date span", "https://www.completesports.com/", collector)
 	completesports2 = filterNews(completesports2)
 
-	news := allnews{punch, theGuardian, theSun, premiumTimes, aljazeera, saharaNews, dailypost, skysports, completesports, completesports2}
+	news := allnews{punch, theGuardian, theSun, premiumTimes, aljazeera, saharaNews, dailyTrust, dailypost, skysports, completesports, completesports2}
 
 	tpl.ExecuteTemplate(w, "index.html", news)
 }
