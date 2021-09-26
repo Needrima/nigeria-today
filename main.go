@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"html/template"
 	"log"
-
 	"net/http"
+	"os"
 
 	"github.com/gocolly/colly"
 )
