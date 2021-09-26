@@ -3,7 +3,7 @@ package main
 import (
 	// "fmt"
 	// "html/template"
-	// "log"
+	"log"
 	"net/http"
 	"os"
 
@@ -26,19 +26,19 @@ import (
 // 	tpl = template.Must(template.ParseGlob("./templates/*"))
 // }
 
-// func main() {
-// 	routes()
+func main() {
+	routes()
 
-// 	port := os.Getenv("PORT")
-// 	if port == "" {
-// 		port = "8080"
-// 	}
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 
-// 	if err := http.ListenAndServe(":"+port, nil); err != nil {
-// 		log.Fatal("ListenAndServe:", err)
-// 	}
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
+		log.Fatal("ListenAndServe:", err)
+	}
 
-// }
+}
 
 // func CrawlNews(w http.ResponseWriter, r *http.Request) {
 // 	collector := colly.NewCollector(
