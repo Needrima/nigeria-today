@@ -28,203 +28,106 @@
                 <li><a href="#tabs-5">Aljazeera News</a></li>
                 <li><a href="#tabs-6">Sahara Reporters News</a></li>
                 <li><a href="#tabs-7">Daily Trust News</a></li>
-                <li><a href="#tabs-8">The Cable News</a></li>
-                <li><a href="#tabs-9">Daily Post News</a></li>
-                <li><a href="#tabs-10">Skysports News</a></li>
-                <li><a href="#tabs-11">Completesports News</a></li>
+                <li><a href="#tabs-8">Daily Post News</a></li>
+                <li><a href="#tabs-9">Skysports News</a></li>
+                <li><a href="#tabs-10">Completesports News</a></li>
             </ul>
 
             <div id="tabs-1">
-                {{range .}}
+                {{range .PunchNews}}
                 <div class="content">
-                    <h1><a href="{{.NewsLink}}">{{.Heading}} </a></h1>
+                    <h1><a href="{{.NewsLink}}" target="_blank">{{.Heading}} </a></h1>
                     <p>{{.PublishedAt}}</p>
                 </div>
                 {{end}}
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Aug 2021</p>
-                </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Jun</p>
-                </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 30 minutes ago</p>
-                </div>
             </div>
 
             <div id="tabs-2">
+                {{range .GuardianNews}}
                 <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Aug 2021</p>
+                    <h1><a href="{{.NewsLink}}" target="_blank">{{.Heading}} </a></h1>
+                    <p>{{.PublishedAt}}</p>
                 </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Jun</p>
-                </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 30 minutes ago</p>
-                </div>
+                {{end}}
             </div>
 
             <div id="tabs-3">
+                {{range .SunNews}}
                 <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Aug 2021</p>
+                    <h1><a href="{{.NewsLink}}" target="_blank">{{.Heading}} </a></h1>
+                    <p>{{.PublishedAt}}</p>
                 </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Jun</p>
-                </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 30 minutes ago</p>
-                </div>
+                {{end}}
             </div>
 
             <div id="tabs-4">
+                {{range .PremiumTimesNews}}
                 <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Aug 2021</p>
+                    <h1><a href="{{.NewsLink}}" target="_blank">{{.Heading}} </a></h1>
+                    <p>{{.PublishedAt}}</p>
                 </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Jun</p>
-                </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 30 minutes ago</p>
-                </div>
+                {{end}}
             </div>
 
             <div id="tabs-5">
+                {{range .AlJazeeraNews}}
                 <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Aug 2021</p>
+                    <h1><a href="{{.NewsLink}}" target="_blank">{{.Heading}} </a></h1>
+                    <p>{{.PublishedAt}}</p>
                 </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Jun</p>
-                </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 30 minutes ago</p>
-                </div>
+                {{end}}
             </div>
 
             <div id="tabs-6">
+                {{range .SaharaNews}}
                 <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Aug 2021</p>
+                    <h1><a href="{{.NewsLink}}" target="_blank">{{.Heading}} </a></h1>
+                    <p>{{.PublishedAt}}</p>
                 </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Jun</p>
-                </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 30 minutes ago</p>
-                </div>
+                {{end}}
             </div>
 
             <div id="tabs-7">
+                {{range .DailyTrustNews}}
                 <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Aug 2021</p>
+                    <h1><a href="https://www.dailytrust.com{{.NewsLink}}" target="_blank">{{.Heading}} </a></h1>
+                    <p>{{.PublishedAt}}</p>
                 </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Jun</p>
-                </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 30 minutes ago</p>
-                </div>
+                {{end}}
             </div>
 
             <div id="tabs-8">
+                {{range .DailyPostNews}}
                 <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Aug 2021</p>
+                    <h1><a href="{{.NewsLink}}" target="_blank">{{.Heading}} </a></h1>
+                    <p>{{.PublishedAt}}</p>
                 </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Jun</p>
-                </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 30 minutes ago</p>
-                </div>
+                {{end}}
             </div>
 
             <div id="tabs-9">
+                {{range .SkySportsNews}}
                 <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Aug 2021</p>
+                    <h1><a href="https://www.skysports.com{{.NewsLink}}" target="_blank">{{.Heading}} </a></h1>
+                    <p>{{.PublishedAt}}</p>
                 </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Jun</p>
-                </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 30 minutes ago</p>
-                </div>
+                {{end}}
             </div>
 
             <div id="tabs-10">
+                {{range .CompleteSportsNews1}}
                 <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Aug 2021</p>
+                    <h1><a href="{{.NewsLink}}" target="_blank">{{.Heading}} </a></h1>
+                    <p>{{.PublishedAt}}</p>
                 </div>
+                {{end}}
 
+                {{range .CompleteSportsNews2}}
                 <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Jun</p>
+                    <h1><a href="{{.NewsLink}}" target="_blank">{{.Heading}} </a></h1>
+                    <p>{{.PublishedAt}}</p>
                 </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 30 minutes ago</p>
-                </div>
-            </div>
-
-            <div id="tabs-11">
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Aug 2021</p>
-                </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 31st Jun</p>
-                </div>
-
-                <div class="content">
-                    <h1><a href="#">Again,banks,markets,others shut in Imo despite lorem ipsum </a></h1>
-                    <p>Published 30 minutes ago</p>
-                </div>
+                {{end}}
             </div>
             
         </div>
