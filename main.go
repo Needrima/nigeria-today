@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-
 	// "github.com/gocolly/colly"
 )
 
@@ -34,10 +33,7 @@ func main() {
 		port = "8080"
 	}
 
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
-		log.Fatal("ListenAndServe:", err)
-	}
-
+	http.ListenAndServe(":"+port, nil)
 }
 
 // func CrawlNews(w http.ResponseWriter, r *http.Request) {
