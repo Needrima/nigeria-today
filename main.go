@@ -71,7 +71,7 @@ func CrawlNews(w http.ResponseWriter, r *http.Request) {
 	saharaNews = filterNews(saharaNews)
 
 	dailyTrust := getNews(".list_body__19fyx", "a", "a", ".list_category__1sVu4 span.list_time__1UhFn", "https://dailytrust.com", collector) // prefix media link with https://www.dailytrust.com
-	//dailyTrust = dailyTrust[9:]
+	dailyTrust = dailyTrust[9:]
 
 	dailypost := getNews(".mvp-blog-story-wrap", "a .mvp-blog-story-in .mvp-blog-story-text h2", "a", "a .mvp-blog-story-in .mvp-blog-story-text .mvp-cat-date-wrap .mvp-cd-date", "https://dailypost.ng/headlines/", collector)
 
@@ -80,6 +80,10 @@ func CrawlNews(w http.ResponseWriter, r *http.Request) {
 	completesports := getNews(".td", ".item-title a span", ".item-title a", ".meta-item-date a span", "https://www.completesports.com/", collector)
 	completesports2 := getNews(".item-sub", ".item-title a", ".item-title a", ".meta-items .meta-item-date span", "https://www.completesports.com/", collector)
 	completesports2 = filterNews(completesports2)
+
+	for _, v := range dailyTrust {
+		fmt.Println(v.NewsLink)
+	}
 
 	news := allnews{punch, theGuardian, theSun, premiumTimes, aljazeera, saharaNews, dailyTrust, dailypost, skysports, completesports, completesports2}
 
