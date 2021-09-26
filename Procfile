@@ -1,1 +1,1 @@
-web: nigeria-today
+web: github.com/Needrima/nigeria-today
