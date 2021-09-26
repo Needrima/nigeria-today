@@ -3,7 +3,7 @@ package main
 import (
 	// "fmt"
 	// "html/template"
-	"log"
+	//"log"
 	"net/http"
 	"os"
 	// "github.com/gocolly/colly"
