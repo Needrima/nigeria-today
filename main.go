@@ -1,8 +1,11 @@
 package main
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -12,6 +15,21 @@ import (
 
 var tpl *template.Template
 
+type covidInfo struct {
+	Country      string `json:"country"`
+	TotalCases   int    `json:"cases"`
+	TodaysCases  int    `json:"todayCases"`
+	TotalDeaths  int    `json:"deaths"`
+	TodaysDeaths int    `json:"todayDeaths"`
+	Recovered    int    `json:"recovered"`
+	Active       int    `json:"active"`
+	Critical     int    `json:"critical"`
+	CPM          int    `json:"casesPerOneMillion"`  //Cases per million
+	DPM          int    `json:"deathsPerOneMillion"` //Deaths per million
+	TotalTests   int    `json:"totalTests"`
+	TPM          int    `json:"testsPerOneMillion"` //Tests per million
+}
+
 type news struct {
 	Heading     string
 	NewsLink    string
@@ -20,6 +38,7 @@ type news struct {
 
 type allNews struct {
 	PunchNews, GuardianNews, SunNews, PremiumTimesNews, AlJazeeraNews, SaharaNews, DailyTrustNews, DailyPostNews, SkySportsNews, CompleteSportsNews1, CompleteSportsNews2 []news
+	covidInfo
 }
 
 func init() {
@@ -78,9 +97,32 @@ func CrawlNews(w http.ResponseWriter, r *http.Request) {
 	completesports2 := getNews(".item-sub", ".item-title a", ".item-title a", ".meta-items .meta-item-date span", "https://www.completesports.com/", collector)
 	completesports2 = filterNews(completesports2)
 
-	news := allNews{punch, theGuardian, theSun, premiumTimes, aljazeera, saharaNews, dailyTrust, dailypost, skysports, completesports, completesports2}
+	c, _ := getCovidInfo("niGeria")
 
-	tpl.ExecuteTemplate(w, "index.html", news)
+	news := allNews{punch, theGuardian, theSun, premiumTimes, aljazeera, saharaNews, dailyTrust, dailypost, skysports, completesports, completesports2, c}
+
+	//fmt.Println(c)
+
+	if r.Method == http.MethodGet {
+		tpl.ExecuteTemplate(w, "index.html", news)
+	} else if r.Method == http.MethodPost {
+		countryName := r.FormValue("country")
+
+		c, err := getCovidInfo(countryName)
+
+		if err != nil {
+			if err.Error() == "Country not found" {
+				http.Error(w, err.Error(), 400)
+				return
+			}
+
+			http.Error(w, err.Error(), 500)
+			return
+		}
+
+		news.covidInfo = c
+		tpl.ExecuteTemplate(w, "index.html", news)
+	}
 }
 
 //helper functions
@@ -132,4 +174,31 @@ func routes() {
 
 	http.Handle("/public/css/", http.StripPrefix("/public/css/", http.FileServer(http.Dir("public/css"))))
 	http.Handle("/public/js/", http.StripPrefix("/public/js/", http.FileServer(http.Dir("public/js"))))
+}
+
+func getCovidInfo(name string) (covidInfo, error) {
+	url := fmt.Sprintf("https://coronavirus-19-api.herokuapp.com/countries/%s", name)
+	r, err := http.Get(url)
+	if err != nil {
+		return covidInfo{}, errors.New("Something went wrong")
+	}
+	defer r.Body.Close()
+
+	b, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return covidInfo{}, errors.New("Something went wrong")
+	}
+
+	if content := string(b); content == "Country not found" {
+		return covidInfo{}, errors.New(content)
+	}
+
+	var c covidInfo
+
+	err = json.Unmarshal(b, &c)
+	if err != nil {
+		return covidInfo{}, errors.New("Something went wrong")
+	}
+
+	return c, nil
 }

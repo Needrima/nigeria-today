@@ -31,6 +31,7 @@
                 <li><a href="#tabs-8">Daily Post News</a></li>
                 <li><a href="#tabs-9">Skysports News</a></li>
                 <li><a href="#tabs-10">Completesports News</a></li>
+                <li><a href="#tabs-11">Covid-19 Update</a></li>
             </ul>
 
             <div id="tabs-1">
@@ -128,6 +129,27 @@
                     <p>{{.PublishedAt}}</p>
                 </div>
                 {{end}}
+            </div>
+
+            <div id="tabs-11">
+                <div class="content">
+                    <form method="post">
+                        <input type="text" name="country" id="" placeholder="Enter country name">
+                        <input type="submit" value="Get">
+                    </form>
+                    <h1>{{.Country}}</h1>
+                    <p>Total Cases: {{.TotalCases}}</p>
+                    <p>Today's Cases: {{.TodaysCases}}</p>
+                    <p>Total Deaths: {{.TotalDeaths}}</p>
+                    <p>Today's Deaths: {{.TodaysDeaths}}</p>
+                    <p>Recovered: {{.Recovered}}</p>
+                    <p>Active: {{.Active}}</p>
+                    <p>Critical: {{.Critical}}</p>
+                    <p>Cases per one million: {{.CPM}}</p>
+                    <p>Deaths per one million: {{.DPM}}</p>
+                    <p>Total Tests: {{.TotalTests}}</p>
+                    <p>Tests per one million: {{.TPM}}</p>
+                </div>
             </div>
             
         </div>

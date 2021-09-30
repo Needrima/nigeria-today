@@ -51,6 +51,25 @@
     margin-top: 12px;
 }
 
+.content form input[type="text"]{
+    height: 40px;
+    width: 300px;
+    font-size: 1.5em;
+    border-radius: 10px;
+}
+
+.content form input[type="submit"]{
+    background-color: rgb(5, 143, 226);
+    height: 40px;
+    width: 50px;
+    font-size: 1.5em;
+    border: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-weight: 400;
+    color: white;
+}
+
 @media(max-width: 1000px) {
     .container {
         margin: 0;
