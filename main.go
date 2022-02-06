@@ -61,7 +61,7 @@ func CrawlNews(w http.ResponseWriter, r *http.Request) {
 
 	collector.OnError(func(_ *colly.Response, err error) {
 		log.Println("Collector error: ", err.Error())
-		http.Error(w, "Something went wrong", 500)
+		http.Error(w, "something went wrong", 500)
 		return
 	})
 
@@ -97,7 +97,7 @@ func CrawlNews(w http.ResponseWriter, r *http.Request) {
 	completesports2 := getNews(".item-sub", ".item-title a", ".item-title a", ".meta-items .meta-item-date span", "https://www.completesports.com/", collector)
 	completesports2 = filterNews(completesports2)
 
-	c, _ := getCovidInfo("niGeria")
+	c, _ := getCovidInfo("nigeria")
 
 	news := allNews{punch, theGuardian, theSun, premiumTimes, aljazeera, saharaNews, dailyTrust, dailypost, skysports, completesports, completesports2, c}
 
@@ -111,12 +111,7 @@ func CrawlNews(w http.ResponseWriter, r *http.Request) {
 		c, err := getCovidInfo(countryName)
 
 		if err != nil {
-			if err.Error() == "Country not found" {
-				http.Error(w, err.Error(), 400)
-				return
-			}
-
-			http.Error(w, err.Error(), 500)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
@@ -172,21 +167,23 @@ func filterNews(newsSlice []news) []news {
 func routes() {
 	http.HandleFunc("/", CrawlNews)
 
-	http.Handle("/public/css/", http.StripPrefix("/public/css/", http.FileServer(http.Dir("public/css"))))
-	http.Handle("/public/js/", http.StripPrefix("/public/js/", http.FileServer(http.Dir("public/js"))))
+	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public/"))))
+
+	// http.Handle("/public/css/", http.StripPrefix("/public/css/", http.FileServer(http.Dir("public/css"))))
+	// http.Handle("/public/js/", http.StripPrefix("/public/js/", http.FileServer(http.Dir("public/js"))))
 }
 
 func getCovidInfo(name string) (covidInfo, error) {
 	url := fmt.Sprintf("https://coronavirus-19-api.herokuapp.com/countries/%s", name)
 	r, err := http.Get(url)
 	if err != nil {
-		return covidInfo{}, errors.New("Something went wrong")
+		return covidInfo{}, errors.New("something went wrong")
 	}
 	defer r.Body.Close()
 
 	b, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		return covidInfo{}, errors.New("Something went wrong")
+		return covidInfo{}, errors.New("something went wrong")
 	}
 
 	if content := string(b); content == "Country not found" {
@@ -197,7 +194,7 @@ func getCovidInfo(name string) (covidInfo, error) {
 
 	err = json.Unmarshal(b, &c)
 	if err != nil {
-		return covidInfo{}, errors.New("Something went wrong")
+		return covidInfo{}, errors.New("something went wrong")
 	}
 
 	return c, nil
